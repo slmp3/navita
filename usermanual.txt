@@ -1,0 +1,12 @@
+This is NAVITA, the Algorithmic AI Assistant. there will always be command updates in the future, that will also be listed in this user manual. Any other unsupported command will always lead to NAVITA outputting "Sorry, I don't understand this command yet.". so make sure you use "c!" before using NAVITA. Since NAVITA is open-sourced, any user can add new commands and make other versions off NAVITA. These are the commands: 
+hello / hi > Greet NAVITA
+time > Show Current Time by AM/PM
+date / today > Tells the current date
+bye / exit > Says Bye, but your input and Send button will be disabled.
+navita > if any user types it's name
+calculate [expression] > Quick Calculator
+guess the number > guesses a random number or chooses a random number
+Open [Name] > Open Website By name but only SLMP3 Crawl and Reddit yet.
+Open URL [URL] > Open Website By URL, works with any Website that is working
+c! > shows commands
+These are all the commands. Report Issues in Github > Issues in this repository if you have any issues.ny issues.
