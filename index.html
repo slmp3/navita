@@ -96,7 +96,7 @@ function navitaRespond(message) {
         }
     } else if (msg.includes("guess the number")) {
         const n = Math.floor(Math.random() * 100000) + 1;
-        response = `Guess a number: ${n}`;
+        response = `${n}`;
     } else if (msg.startsWith("open")) {
         const site = msg.replace("open", "").trim().toLowerCase();
         if (site.includes("reddit")) {
