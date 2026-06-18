@@ -66,10 +66,11 @@ const input = document.getElementById('userInput');
 const button = document.getElementById('sendBtn');
 
 function navitaRespond(message) {
+    const originalMsg = message;
     const msg = message.toLowerCase();
     let response = "";
 
-    if (msg.includes("hello") || msg.includes("hi")) {
+    if (msg.startsWith("hello") || msg.startsWith("hi")) {
         const greetings = ["Hello!", "Hey!", "Hi there!"];
         response = greetings[Math.floor(Math.random() * greetings.length)];
     } else if (msg.includes("time")) {
@@ -95,29 +96,41 @@ function navitaRespond(message) {
             response = "Sorry, I can't calculate that.";
         }
     } else if (msg.includes("guess the number")) {
-        const n = Math.floor(Math.random() * 100000) + 1;
-        response = `${n}`;
-    } else if (msg.startsWith("open")) {
-        const site = msg.replace("open", "").trim().toLowerCase();
-        if (site.includes("reddit")) {
-            window.open("https://www.reddit.com", "_blank");
-            response = "Opening Reddit...";
-        } else if (site.includes("crawl")) {
-            window.open("https://slmp3-crawl.vercel.app", "_blank");
-            response = "Opening SLMP3 Crawl...";
-        } else {
-            let url = site;
-            if (!url.startsWith("http://") && !url.startsWith("https://")) {
-                url = "https://" + site;
-            }
-            try {
-                window.open(url, "_blank");
-                response = `Opening ${url}...`;
-            } catch (e) {
-                response = "Cannot open that website.";
-            }
-        }
-    } else if (msg === "c!") {
+        const n = Math.floor(Math.random() * 2000) + 1;
+        response = `${n}`;        
+        } else if (msg.startsWith("open")) {
+    let url = msg.replace("open", "").trim();
+
+    if (!url.startsWith("http://") && !url.startsWith("https://")) {
+        url = "https://" + url;
+    }
+    try {
+        window.open(url, "_blank");
+        response = `Opening ${url}...`;
+    } catch (e) {
+        response = "Cannot open that website.";
+}
+    } else if (msg.startsWith("say ")) {
+    const text = originalMsg.slice(4);
+    response = text;
+    } else if (msg === "#debug0#") {
+    response = `
+    ##########
+    1234567890
+    ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    0908
+    aBcDeFgHiJkLmNoPqRtUvWxYz
+    abcdefghijklmnopqrstuvwxyz
+    0987654321
+    zyxwvutsrqponmlkjihgfedcba
+    zYxWvUtRqPoNmLkJiHgFeDcBa
+    ZYXWVUTSRQPONMLKJIHGFEDCBA
+    Lorem Ipsum Dolor sit amet, consectetur adipiscing elit. 
+    ##########
+    `
+    } else if (msg === "clears") {
+    chat.innerHTML = "";
+} else if (msg === "c!") {
         response = `
 hello / hi > Greet NAVITA
 time > Show Current Time by AM/PM
@@ -126,9 +139,10 @@ bye / exit > Says Bye, but your input and Send button will be disabled.
 navita > if any user types it's name
 calculate [expression] > Quick Calculator
 guess the number > guesses a random number or chooses a random number
-Open [Name] > Open Website By name but only SLMP3 Crawl and Reddit yet.
-Open URL [URL] > Open Website By URL, works with any Website that is working
+Open [URL] > Open Website By URL, works with any Website that is working
 c! > shows commands
+say [text] > will repeat what you said.
+clears > clean message history
 `;
     } else {
         response = "I don't understand that command yet.";
